@@ -17,7 +17,8 @@ Introducing the **PixelPrecision 2024 Halloween Pack** for FiveM! This free and 
     
   * **Female Version**
     * :womans_clothes: 5 tops (jacket, top, hoodie, t-shirt, and one more)
-    * :jeans: 2-3 pairs of pants
+    * :billed_cap: Baseball cap
+    * :jeans: 3 pairs of pants
     * :mask: 8 unisex masks
 
 # :gear: **Compatibility**
