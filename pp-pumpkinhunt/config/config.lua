@@ -55,7 +55,7 @@ local Inventory = nil
 
 if GetResourceState('es_extended') ~= 'missing' then
     Framework = 'ESX'
-    ESX = exports.es_extended:GetSharedObject()
+    ESX = exports.es_extended:getSharedObject()
 elseif GetResourceState('qbx_core') ~= 'missing' then
     Framework = 'QBOX'
 elseif GetResourceState('qb-core') ~= 'missing' then
