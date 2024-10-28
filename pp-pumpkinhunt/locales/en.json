@@ -1,0 +1,11 @@
+{
+    "collect_pumpkin": "Collect Pumpkin",
+    "collecting_pumpkin": "Collecting Pumpkin",
+    "already_collected": "You already collected this pumpkin",
+    "cannot_collect": "You cannot collect this pumpkin",
+    "collect_too_far": "You are too far from pumpkin",
+    "collect_success": "You picked up pumpkin!",
+    "collect_full_inventory": "Your inventory is full, you cannot collect the pumpkin",
+    "deposit_no_pumpkins": "You have no pumpkins to deposit",
+    "deposit_success": "You deposited %s pumpkin(s)"
+}

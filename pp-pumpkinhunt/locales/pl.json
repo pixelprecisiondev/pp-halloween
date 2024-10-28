@@ -1,0 +1,11 @@
+{
+    "collect_pumpkin": "Zbierz dynię",
+    "collecting_pumpkin": "Zbieranie dyni",
+    "already_collected": "Już zebrałeś tę dynię",
+    "cannot_collect": "Nie możesz zebrać tej dyni",
+    "collect_too_far": "Jesteś za daleko od dyni",
+    "collect_success": "Zebrałeś dynię!",
+    "collect_full_inventory": "Twój ekwipunek jest pełny, nie możesz zebrać dyni",
+    "deposit_no_pumpkins": "Nie masz dyni do oddania",
+    "deposit_success": "Oddałeś %s dyni"
+}
