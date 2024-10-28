@@ -20,6 +20,23 @@ Introducing the **PixelPrecision 2024 Halloween Pack** for FiveM! This free and 
     * :billed_cap: Baseball cap
     * :jeans: 3 pairs of pants
     * :mask: 8 unisex masks
+   
+# 🚀 **Installation**
+
+1. **Plug & Play**: Simply drag and drop the pack into your server resources and start it up.
+
+2. **Database Setup**:  
+   Use the appropriate command in your database below based on your framework:
+
+   - **For ESX**:
+     ```sql
+     ALTER TABLE `users` ADD `collected_pumpkins` INT(10) DEFAULT NULL;
+     ```
+
+   - **For QBCore and QBOX**:
+     ```sql
+     ALTER TABLE `players` ADD `collected_pumpkins` INT(10) DEFAULT NULL;
+     ```
 
 # :gear: **Compatibility**
 
