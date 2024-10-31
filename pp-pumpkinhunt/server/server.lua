@@ -162,36 +162,46 @@ lib.callback.register('pp-halloween:getRankingData', function(source)
     }
 end)
 
+local function saveDataToDatabase()
+    local totalPlayers = 0
+    local totalPumpkins = 0
+    local cases = {}
+    local ids = {}
+
+    for identifier, pumpkinCount in pairs(rankingData.ranking) do
+        table.insert(cases, string.format("WHEN '%s' THEN collected_pumpkins + %d", identifier, pumpkinCount))
+        table.insert(ids, string.format("'%s'", identifier))
+        totalPlayers = totalPlayers + 1
+        totalPumpkins = totalPumpkins + pumpkinCount
+    end
+
+    if #cases > 0 then
+        local updateQuery = string.format([[
+            UPDATE %s
+            SET collected_pumpkins = CASE %s
+                %s
+            END
+            WHERE %s IN (%s)
+        ]], config.database.tableName, config.database.identifierColumnName, table.concat(cases, " "), config.database.identifierColumnName, table.concat(ids, ", "))
+
+        MySQL.query(updateQuery, {}, function()
+            rankingData = { ranking = {}, blocked = true }
+            lib.print.info(('Updated %s players with a total of %s pumpkins collected.'):format(totalPlayers, totalPumpkins))
+        end)
+    end
+end
+
 AddEventHandler('txAdmin:events:scheduledRestart', function(eventData)
     if eventData.secondsRemaining == 60 then
         CreateThread(function()
             Wait(45000)
-            local totalPlayers = 0
-            local totalPumpkins = 0
-            local cases = {}
-            local ids = {}
-
-            for identifier, pumpkinCount in pairs(rankingData.ranking) do
-                table.insert(cases, string.format("WHEN '%s' THEN collected_pumpkins + %d", identifier, pumpkinCount))
-                table.insert(ids, string.format("'%s'", identifier))
-                totalPlayers = totalPlayers + 1
-                totalPumpkins = totalPumpkins + pumpkinCount
-            end
-
-            if #cases > 0 then
-                local updateQuery = string.format([[
-                    UPDATE %s
-                    SET collected_pumpkins = CASE %s
-                        %s
-                    END
-                    WHERE %s IN (%s)
-                ]], config.database.tableName, config.database.identifierColumnName, table.concat(cases, " "), config.database.identifierColumnName, table.concat(ids, ", "))
-
-                MySQL.query(updateQuery, {}, function()
-                    rankingData = { ranking = {}, blocked = true }
-                    lib.print.info(('Updated %s players with a total of %s pumpkins collected.'):format(totalPlayers, totalPumpkins))
-                end)
-            end
+            saveDataToDatabase()
         end)
+    end
+end)
+
+AddEventHandler('onResourceStop', function(resourceName)
+    if resourceName == GetCurrentResourceName() and not rankingData.blocked then
+        saveDataToDatabase()
     end
 end)
