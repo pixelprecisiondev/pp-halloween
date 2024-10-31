@@ -66,10 +66,9 @@ end)
 
 lib.callback.register('pp-halloween:getRankingData', function(source)
     local pIdentifier = config.framework.getIdentifier(source)
-    print(pIdentifier)
     if not pIdentifier then return end
     local query = string.format([[
-        SELECT %s, collected_pumpkins, %s, %s
+        SELECT %s, IFNULL(collected_pumpkins, 0) AS collected_pumpkins, %s, %s
         FROM %s
         ORDER BY collected_pumpkins DESC
         LIMIT 10
@@ -98,7 +97,7 @@ lib.callback.register('pp-halloween:getRankingData', function(source)
     for _, dbEntry in ipairs(dbRanking) do
         local identifier = dbEntry.identifier
         local sessionPumpkins = rankingData.ranking[identifier] or 0
-        local totalPumpkins = dbEntry.collected_pumpkins + sessionPumpkins
+        local totalPumpkins = (dbEntry.collected_pumpkins or 0) + sessionPumpkins
 
         table.insert(combinedRanking, {
             identifier = identifier,
