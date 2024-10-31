@@ -64,7 +64,7 @@ Introducing the **PixelPrecision 2024 Halloween Pack** for FiveM! This free and 
          description = 'A spooky Halloween pumpkin!'
      },
      ```
-   - ![Example item image](halloween_pumpkin.png)
+   - Example item image: ![item image](halloween_pumpkin.png)
 
 # :gear: **Compatibility**
 
