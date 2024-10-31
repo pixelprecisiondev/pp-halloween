@@ -37,6 +37,34 @@ Introducing the **PixelPrecision 2024 Halloween Pack** for FiveM! This free and 
      ```sql
      ALTER TABLE `players` ADD `collected_pumpkins` INT(10) DEFAULT NULL;
      ```
+3. **Adding inventory item**:
+   - **For `ox_inventory`**:
+     ```lua
+     -- Add this to your `data/items.lua`.
+     ['halloween_pumpkin'] = {
+         label = 'Pumpkin',
+         weight = 100,
+         stack = true,
+         description = 'A spooky Halloween pumpkin!'
+     },
+     ```
+
+   - **For `qb-inventory`**:
+     ```lua
+     -- Add this to your `@qb-core/shared/items.lua`.
+     ['halloween_pumpkin'] = {
+         name = 'halloween_pumpkin',
+         label = 'Pumpkin',
+         weight = 100,
+         type = 'item',
+         image = 'halloween_pumpkin.png',
+         unique = false,
+         useable = true,
+         shouldClose = true,
+         description = 'A spooky Halloween pumpkin!'
+     },
+     ```
+   - ![Example item image](halloween_pumpkin.png)
 
 # :gear: **Compatibility**
 
